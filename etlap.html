@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <title>Étlap</title>
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-1 col-md-2 col-lg-3"></div>
+            <div class="col-sm-10 col-md-8 col-lg-6">
+                <form>
+                    <h1 class="py-5 text-center">Hamburger rendelés</h1>
+                    <fieldset>
+                        <legend class="pb-2">Rendelés kiválasztása</legend>
+                        <div class="row row-cols-2">
+                            <div class="col">
+                                <label>
+                                    <input type="radio" name="main" value="0">
+                                    <img src="img/hamburger.jpg" class="img-thumbnail" alt="hamburger" width=100%>
+                                    <small><strong>Marhaburger: 1300 Ft</strong>
+                                        <ul>
+                                            <li>Húspogácsa</li>
+                                            <li>Sajt</li>
+                                            <li>Saláta</li>
+                                        </ul>
+                                    </small>
+                                </label>
+                            </div>
+                            <div class="col">
+                                <label>
+                                    <input type="radio" name="main" value="100">
+                                    <img src="img/baconburger.jpg" class="img-thumbnail" alt="hamburger" width=100%>
+                                    <small><strong>Baconburger: 1500 Ft</strong>
+                                        <ul>
+                                            <li>Húspogácsa</li>
+                                            <li>Bacon</li>
+                                            <li>Sajt</li>
+                                        </ul>
+                                    </small>
+                                </label>
+                            </div>
+                            <div class="col">
+                                <label>
+                                    <input type="radio" name="main" value="200">
+                                    <img src="img/csirkeburger.jpg" class="img-thumbnail" alt="hamburger" width=100%>
+                                    <small><strong>Csirkeburger: 1000 Ft</strong>
+                                        <ul>
+                                            <li>Húspogácsa</li>
+                                            <li>Fetasajt</li>
+                                            <li>Saláta</li>
+                                        </ul>
+                                    </small>
+                                </label>
+                            </div>
+                            <div class="col">
+                                <label>
+                                    <input type="radio" name="main" value="300">
+                                    <img src="img/veganburger.jpg" class="img-thumbnail" alt="hamburger" width=100%>
+                                    <small><strong>Vegán burger: 1200 Ft</strong>
+                                        <ul>
+                                            <li>Tofu</li>
+                                            <li>Vegán sajt</li>
+                                            <li>Saláta</li>
+                                        </ul>
+                                    </small>
+                                </label>
+                            </div>
+                        </div>
+                    </fieldset>
+                    <fieldset>
+                        <div class="form-group py-3">
+                            <strong>Köret:</strong>
+                            <div>
+                                <input checked id="nothing" name="side" value="0" type="radio" onclick="calcAmount()">
+                                <label for="nothing">Nem kérek</label>
+                            </div>
+                            <div>
+                                <input id="fries" name="side" value="300" type="radio" onclick="calcAmount()">
+                                <label for="fries">Sültkrumpli</label>
+                            </div>
+                            <div>
+                                <input id="batata" name="side" value="900" type="radio" onclick="calcAmount()">
+                                <label for="batata">Fűszeres édesburgonya</label>
+                            </div>
+                            <div>
+                                <input id="salad" name="side" value="600" type="radio" onclick="calcAmount()">
+                                <label for="salad">Zöldségsaláta</label>
+                            </div>
+                        </div>
+                        <div class="form-group py-3">
+                            <label for="sauce"><strong>Extra szósz:</strong></label>
+                            <select name="sauce" id="sauce" class="form-control">
+                                <option value="0" selected>Nem kérek</option>
+                                <option value="100">Majonéz</option>
+                                <option value="150">Ketchup</option>
+                            </select>
+                        </div>
+                        <div class="form-group py-3">
+                            <label for="amount-input"><strong>Mennyiség:</strong></label>
+                            <input type="number" name="amount-input" class="form-control" value="1"
+                                onmouseup="calcAmount()" onkeyup="calcAmount()">
+                            <small class="form-text text-muted">Minimum 1, maximum 10 darab</small>
+                        </div>
+                    </fieldset>
+                    <fieldset>
+                        <legend>Személyes adatok</legend>
+                        <div class="form-group py-2">
+                            <label for="name">Név: *</label>
+                            <input id="name" name="name" type="text" class="form-control" required>
+                        </div>
+                        <div class="form-group py-2">
+                            <label for="email">Email cím: *</label>
+                            <input id="email" name="email" type="email" class="form-control" required>
+                            <small class="form-text text-muted">példa@valami.com</small>
+                        </div>
+                        <div class="form-group py-2">
+                            <label for="postalcode">Irányítószám: *</label>
+                            <input id="postalcode" name="postalcode" type="text" class="form-control" required>
+                        </div>
+                        <div class="form-group py-2">
+                            <label for="address">Utca, házszám: *</label>
+                            <input id="address" name="address" type="text" class="form-control" required>
+                        </div>
+                        <div class="form-group py-2">
+                            <label for="comment">Megjegyzés:</label>
+                            <textarea id="comment" name="comment" rows="5" class="form-control"></textarea>
+                        </div>
+                    </fieldset>
+                    <div class="form-group py-5">
+                        <div class="row row-cols-2">
+                            <div class="col">
+                                <button onclick="calcAmount()" type="button"
+                                    class="btn btn-primary">Megrendelés</button>
+                            </div>
+                            <div class="col">
+                                <h5>Fizetendő: <span class="show-amount">1000</span> Ft</h5>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="col-sm-1 col-md-2 col-md-3"></div>
+        </div>
+
+    </div>
+
+    <script src="js/main.js"></script>
+    <script src="js/scope.js"></script>
+</body>
+
+</html>
